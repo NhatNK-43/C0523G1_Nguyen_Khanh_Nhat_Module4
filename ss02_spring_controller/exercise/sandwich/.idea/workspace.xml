@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de432d21-fa48-4a82-af6f-7d363c13c994" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="06ab32c2-1a8a-4451-8175-d106c10a6b9d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/exercise/dictionary/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/exercise/dictionary/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/exercise/dictionary/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/exercise/dictionary/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/practice/spring-greeting/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/practice/spring-greeting/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/practice/spring-greeting/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss01_overview_spring_mvc/practice/spring-greeting/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="spring-beans.schema" />
         <option value="Class" />
-        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -37,36 +39,45 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectId" id="2VNdr2i5qrQFgTWHjtViU17rp8v" />
+  <component name="ProjectId" id="2VPxEsyVT21CGu2G4JAEmCGMjqd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;45dabb7adf1a44d5c535282e69639426&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Javafullstack_Codegym/C0523G1_Nguyen_Khanh_Nhat_Module4/ss01_overview_spring_mvc/practice/spring-greeting",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Javafullstack_Codegym\C0523G1_Nguyen_Khanh_Nhat_Module4\ss02_spring_controller\exercise\sandwich\src\main\webapp\WEB-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Javafullstack_Codegym\C0523G1_Nguyen_Khanh_Nhat_Module4\ss02_spring_controller\exercise\sandwich\src\main\webapp\WEB-INF\views" />
+      <recent name="D:\Javafullstack_Codegym\C0523G1_Nguyen_Khanh_Nhat_Module4\ss02_spring_controller\exercise\sandwich\src\main\webapp" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.80" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
       <deployment>
-        <artifact name="Gradle : com.example : dictionary-1.0-SNAPSHOT.war">
+        <artifact name="Gradle : com.example : sandwich-1.0-SNAPSHOT.war">
           <settings>
             <option name="CONTEXT_PATH" value="" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="4028126f-1de4-4cad-ae43-83c057c57d7d" />
+        <option name="BASE_DIRECTORY_NAME" value="30d7eec2-eb56-4773-8d5d-6697b906168e" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -74,7 +85,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53480" />
+        <option name="DEBUG_PORT" value="51224" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -139,7 +150,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="Gradle : com.example : dictionary-1.0-SNAPSHOT.war" />
+          <artifact name="Gradle : com.example : sandwich-1.0-SNAPSHOT.war" />
         </option>
       </method>
     </configuration>
@@ -147,14 +158,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="de432d21-fa48-4a82-af6f-7d363c13c994" name="Changes" comment="" />
-      <created>1694680678232</created>
+      <changelist id="06ab32c2-1a8a-4451-8175-d106c10a6b9d" name="Changes" comment="" />
+      <created>1694751412967</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694680678232</updated>
-      <workItem from="1694680679240" duration="2831000" />
-      <workItem from="1694746801626" duration="557000" />
-      <workItem from="1694747490378" duration="1433000" />
+      <updated>1694751412967</updated>
+      <workItem from="1694751413983" duration="4819000" />
     </task>
     <servers />
   </component>
