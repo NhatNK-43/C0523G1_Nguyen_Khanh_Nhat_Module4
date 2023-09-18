@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class DictionaryService {
+public class DictionaryService implements IDictionaryService{
     @Autowired
     private DictionaryRepository dictionaryRepository;
     public String translate(String englishWord){

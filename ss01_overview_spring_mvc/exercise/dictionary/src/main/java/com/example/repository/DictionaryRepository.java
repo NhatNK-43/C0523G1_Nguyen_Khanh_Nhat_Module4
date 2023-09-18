@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Repository
-public class DictionaryRepository {
+public class DictionaryRepository implements IDictionaryRepository{
     private static Map<String, String> stringMap = new LinkedHashMap<String, String>();
     static {
         stringMap.put("hello","xin chào");
