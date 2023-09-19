@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -30,9 +31,11 @@ public class EmailController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Email email,Model model){
+    public String update(@ModelAttribute Email email, Model model, RedirectAttributes redirectAttributes){
         emailService.update(email.getId(),email);
-        model.addAttribute("mess", "Update successful");
-        return showList(model);
+        redirectAttributes.addFlashAttribute("mess", "Update successful");
+        List<Email> emailList = emailService.getAll();
+        model.addAttribute("emailList",emailList);
+        return "redirect:/";
     }
 }

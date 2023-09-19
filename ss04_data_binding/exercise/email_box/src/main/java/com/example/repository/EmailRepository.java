@@ -37,6 +37,7 @@ public class EmailRepository implements IEmailRepository{
         for (int i=0; i<emailList.size();i++){
             if(emailList.get(i).getId()==idUpdate){
                 index=i;
+                break;
             }
         }
         if (index!=-1){
