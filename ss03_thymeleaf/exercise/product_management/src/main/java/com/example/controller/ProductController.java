@@ -43,6 +43,8 @@ public class ProductController {
     public String create(@ModelAttribute Product product, RedirectAttributes redirectAttributes, Model model){
         productService.create(product);
         redirectAttributes.addFlashAttribute("mess","Create Successfully!");
+        List<Product> productList = productService.findAll();
+        model.addAttribute("productList",productList);
         return "redirect:/";
     }
 
@@ -51,9 +53,20 @@ public class ProductController {
                          @RequestParam String nameUpdate,
                          @RequestParam int priceUpdate,
                          @RequestParam String descriptionUpdate,
-                         @RequestParam String manufactureUpdate,
+                         @RequestParam String manufacturerUpdate,
                          RedirectAttributes redirectAttributes, Model model){
-        
+        productService.update(idUpdate,new Product(idUpdate,nameUpdate,priceUpdate,descriptionUpdate,manufacturerUpdate));
+        redirectAttributes.addFlashAttribute("mess","Update Successfully!");
+        List<Product> productList = productService.findAll();
+        model.addAttribute("productList",productList);
         return "redirect:/";
+    }
+
+    @GetMapping("/search")
+    public String searchByName(@RequestParam String nameSearch, RedirectAttributes redirectAttributes, Model model){
+        List<Product> productList = productService.showListSearch(nameSearch);
+        model.addAttribute("nameSearch",nameSearch);
+        model.addAttribute("productList",productList);
+        return "list";
     }
 }

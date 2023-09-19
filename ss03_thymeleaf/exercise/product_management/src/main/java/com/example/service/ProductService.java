@@ -21,7 +21,17 @@ public class ProductService implements IProductService{
     }
 
     @Override
+    public void update(int id, Product product) {
+        productRepository.update(id,product);
+    }
+
+    @Override
     public void delete(int id) {
         productRepository.delete(id);
+    }
+
+    @Override
+    public List<Product> showListSearch(String name) {
+        return productRepository.showListSearch(name);
     }
 }

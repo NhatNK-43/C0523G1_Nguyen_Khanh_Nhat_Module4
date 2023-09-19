@@ -30,7 +30,23 @@ public class ProductRepository implements IProductRepository{
     }
 
     @Override
+    public void update(int id, Product product) {
+        productList.set(getIndexById(id),product);
+    }
+
+    @Override
     public void delete(int id) {
         productList.remove(getIndexById(id));
+    }
+
+    @Override
+    public List<Product> showListSearch(String name) {
+        List<Product> productListSearch = new ArrayList<>();
+        for(Product product:productList){
+            if(product.getName().toLowerCase().contains(name.toLowerCase())){
+                productListSearch.add(product);
+            }
+        }
+        return productListSearch;
     }
 }

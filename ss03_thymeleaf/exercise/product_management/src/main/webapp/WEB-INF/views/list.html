@@ -8,8 +8,14 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h2 class="text-primary">Product List</h2>
-    <a href="/create" class="btn btn-sm btn-primary" role="button">Create</a>
+    <a href="/"><h2 class="text-primary">Product List</h2></a>
+    <div class="d-flex mb-3">
+        <a href="/create" class="btn btn-sm btn-primary me-2" role="button">Create</a>
+        <form class="d-flex" role="search" action="/search">
+            <button class="btn btn-sm btn-success me-2" type="submit">Search</button>
+            <input class="form-control-sm me-2" type="search" placeholder="Search" aria-label="Search" name="nameSearch">
+        </form>
+    </div>
     <table class="table">
         <thead>
         <tr class="bg-light">
@@ -18,7 +24,9 @@
             <th scope="col">Price</th>
             <th scope="col">Description</th>
             <th scope="col">Manufacturer</th>
-            <th scope="col">Action</th>
+            <th scope="col">Details</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -29,34 +37,85 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.manufacturer}"></td>
             <td>
-                <!--                <a th:href="@{/update}" class="btn btn-outline-primary btn-sm" role="button">Details</a>-->
                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#detailsModal"
+                        th:onclick="'detailsProduct(\''+${product.id}+'\',\''+${product.name}+'\',\''+${product.price}+'\',\''+${product.description}+'\',\''+${product.manufacturer}+'\')'">
+                    Details
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
                         data-bs-target="#updateModal"
                         th:onclick="'updateProduct(\''+${product.id}+'\',\''+${product.name}+'\',\''+${product.price}+'\',\''+${product.description}+'\',\''+${product.manufacturer}+'\')'">
                     Update
                 </button>
+            </td>
+            <td>
                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
                         data-bs-target="#deleteModal"
-                        th:onclick="'deleteProduct(\''+${product.id}+'\',\''+${product.name}+'\')'">Delete
+                        th:onclick="'deleteProduct(\''+${product.id}+'\',\''+${product.name}+'\')'">
+                    Delete
                 </button>
             </td>
+        </tr>
+        <tr>
+            <td colspan="6" th:if="${productList.isEmpty()}" class="text-danger">Product list is empty</td>
         </tr>
         </tbody>
     </table>
 </div>
 
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/update}" th:method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="detailsModalLabel">Details Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="idDetails" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="idDetails" name="idDetails" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nameDetails" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="nameDetails" name="nameDetails" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="priceDetails" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="priceDetails" name="priceDetails" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descriptionDetails" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="descriptionDetails" name="descriptionDetails" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="manufacturerDetails" class="form-label">Manufacturer</label>
+                        <input type="text" class="form-control" id="manufacturerDetails" name="manufacturerDetails" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form th:object="${product}" th:action="@{/update}" th:method="post">
+            <form th:action="@{/update}" th:method="post">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="updateModalLabel">Update product id: <span id="idUpdate"></span></h1>
+                    <h1 class="modal-title fs-5" id="updateModalLabel">Update product id: <span id="idU"></span></h1>
+                    <input type="hidden" id="idUpdate" name="idUpdate">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nameUpdate" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="nameUpdate" name="nameUpdate" th:field="*{name}">
+                        <input type="text" class="form-control" id="nameUpdate" name="nameUpdate">
                     </div>
                     <div class="mb-3">
                         <label for="priceUpdate" class="form-label">Price</label>
@@ -73,7 +132,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-sm btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-sm btn-warning">Save changes</button>
                 </div>
             </form>
         </div>
@@ -102,12 +161,21 @@
 </div>
 
 <script>
+    function detailsProduct(id, name, price, description, manufacturer) {
+        document.getElementById("idDetails").value = id;
+        document.getElementById("nameDetails").value = name;
+        document.getElementById("priceDetails").value = price;
+        document.getElementById("descriptionDetails").value = description;
+        document.getElementById("manufacturerDetails").value = manufacturer;
+    }
+
     function updateProduct(id, name, price, description, manufacturer) {
+        document.getElementById("idUpdate").value = id;
         document.getElementById("nameUpdate").value = name;
         document.getElementById("priceUpdate").value = price;
         document.getElementById("descriptionUpdate").value = description;
         document.getElementById("manufacturerUpdate").value = manufacturer;
-        document.getElementById("idUpdate").textContent = id;
+        document.getElementById("idU").textContent = id;
     }
 
     function deleteProduct(id, name) {
