@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <a href="/"><h2 class="text-primary">Blog List</h2></a>
+    <a href="/create" class="btn btn-sm btn-primary me-2" role="button">Create</a>
+    <div th:each="blog:${blogList}" class="row">
+        <div class="card col-md-4" style="width: 18rem;">
+            <img th:src="${blog.pathImg}" class="card-img-top pt-2" alt="Not Found!">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${blog.title}"></h5>
+                <p class="card-text" th:text="${blog.content}"></p>
+                <p class="card-text" th:text="${blog.dateOfWriting}"></p>
+                <div class="navbar">
+                    <div class="container-fluid p-0">
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#detailsModal"
+                                th:attr="onclick=|detailsBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
+                            Details
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
+                                data-bs-target="#updateModal"
+                                th:attr="onclick=|updateBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
+                            Update
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                th:attr="onclick=|deleteBlog(${blog.id},${blog.title}|">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="detailsModalLabel">Details blog</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="idDetails" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="idDetails" name="idDetails" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="titleDetails" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleDetails" name="titleDetails" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="contentDetails" class="form-label">Content</label>
+                    <input type="text" class="form-control" id="contentDetails" name="contentDetails" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="dateOfWritingDetails" class="form-label">Date of writing</label>
+                    <input type="date" class="form-control" id="dateOfWritingDetails" name="dateOfWritingDetails" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="pathImgDetails" class="form-label">Path Image</label>
+                    <input type="text" class="form-control" id="pathImgDetails" name="pathImgDetails" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/update}" th:method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="updateModalLabel">Update blog id: <span id="idU"></span></h1>
+                    <input type="hidden" id="idUpdate" name="idUpdate">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="titleUpdate" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="titleUpdate" name="titleUpdate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contentUpdate" class="form-label">Content</label>
+                        <input type="text" class="form-control" id="contentUpdate" name="contentUpdate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateOfWritingUpdate" class="form-label">Date of writing</label>
+                        <input type="date" class="form-control" id="dateOfWritingUpdate" name="dateOfWritingUpdate" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pathImgUpdate" class="form-label">Path image</label>
+                        <input type="text" class="form-control" id="pathImgUpdate" name="pathImgUpdate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-warning">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/delete}" th:method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    You definitely want to delete blog: <span id="titleDelete"></span>?
+                    <input type="hidden" id="idDelete" name="idDelete">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function detailsBlog(id, title, content, dateOfWriting, pathImg) {
+        document.getElementById("idDetails").value = id;
+        document.getElementById("titleDetails").value = title;
+        document.getElementById("contentDetails").value = content
+        document.getElementById("dateOfWritingDetails").value = dateOfWriting;
+        document.getElementById("pathImgDetails").value = pathImg;
+    }
+
+    function updateBlog(id, title, content, dateOfWriting, pathImg) {
+        document.getElementById("idUpdate").value = id;
+        document.getElementById("titleUpdate").value = title;
+        document.getElementById("contentUpdate").value = content;
+        document.getElementById("dateOfWritingUpdate").value = dateOfWriting;
+        document.getElementById("pathImgUpdate").value = pathImg;
+        document.getElementById("idU").textContent = id;
+    }
+
+    function deleteBlog(id, title) {
+        document.getElementById("titleDelete").textContent = title;
+        document.getElementById("idDelete").value = id;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+</body>
+</html>
