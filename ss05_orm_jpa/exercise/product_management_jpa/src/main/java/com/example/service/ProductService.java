@@ -32,6 +32,6 @@ public class ProductService implements IProductService{
 
     @Override
     public List<Product> showListSearch(String name) {
-        return productRepository.showListSearch(name);
+        return productRepository.showListSearch("%"+name+"%");
     }
 }

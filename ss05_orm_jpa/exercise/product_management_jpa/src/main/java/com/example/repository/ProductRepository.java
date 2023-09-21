@@ -68,13 +68,8 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public List<Product> showListSearch(String name) {
-        List<Product> productList = findAll();
-        List<Product> productListSearch = new ArrayList<>();
-        for(Product product:productList){
-            if(product.getName().toLowerCase().contains(name.toLowerCase())){
-                productListSearch.add(product);
-            }
-        }
-        return productListSearch;
+        TypedQuery<Product> query = entityManager.createQuery("from Product where name like :name",Product.class);
+        query.setParameter("name",name);
+        return query.getResultList();
     }
 }
