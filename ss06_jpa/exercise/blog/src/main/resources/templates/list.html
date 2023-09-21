@@ -10,30 +10,32 @@
 <div class="container-fluid">
     <a href="/"><h2 class="text-primary">Blog List</h2></a>
     <a href="/create" class="btn btn-sm btn-primary me-2" role="button">Create</a>
-    <div th:each="blog:${blogList}" class="row">
-        <div class="card col-md-4" style="width: 18rem;">
-            <img th:src="${blog.pathImg}" class="card-img-top pt-2" alt="Not Found!">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${blog.title}"></h5>
-                <p class="card-text" th:text="${blog.content}"></p>
-                <p class="card-text" th:text="${blog.dateOfWriting}"></p>
-                <div class="navbar">
-                    <div class="container-fluid p-0">
-                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                data-bs-target="#detailsModal"
-                                th:attr="onclick=|detailsBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
-                            Details
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
-                                data-bs-target="#updateModal"
-                                th:attr="onclick=|updateBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
-                            Update
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal"
-                                th:attr="onclick=|deleteBlog(${blog.id},${blog.title}|">
-                            Delete
-                        </button>
+    <div class="row">
+        <div class="col-3" th:each="blog:${blogList}">
+            <div class="card" style="width: 100%;">
+                <img th:src="${blog.pathImg}" class="card-img-top radio:16-9" alt="Not Found!" style="height: 225px">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${blog.title}"></h5>
+                    <p class="card-text" th:text="${blog.content}"></p>
+                    <p class="card-text" th:text="${blog.dateOfWriting}"></p>
+                    <div class="navbar">
+                        <div class="container-fluid p-0">
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#detailsModal"
+                                    th:attr="onclick=|detailsBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
+                                Details
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal"
+                                    data-bs-target="#updateModal"
+                                    th:attr="onclick=|updateBlog(${blog.id},${blog.title},${blog.content},${blog.dateOfWriting},${blog.pathImg}|">
+                                Update
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"
+                                    th:attr="onclick=|deleteBlog(${blog.id},${blog.title}|">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
