@@ -20,28 +20,28 @@
     </style>
 </head>
 <body>
-<h1>Thêm mới bài hát</h1>
+<h1>Sửa bài hát</h1>
 <form th:object="${songDto}" th:action="@{/create}" method="post">
     <table>
         <tr>
             <th><label for="name">Tên bài hát: </label></th>
-            <td><input type="text" id="name" name="name" th:field="*{name}"></td>
+            <td><input type="text" id="name" name="name" th:field="*{name}" th:value="${songDtoUpdate.name}"></td>
             <td><small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small></td>
         </tr>
         <tr>
             <th><label for="singer">Người thể hiện: </label></th>
-            <td><input type="text" id="singer" name="singer" th:field="*{singer}"></td>
+            <td><input type="text" id="singer" name="singer" th:field="*{singer}" th:value="${songDtoUpdate.singer}"></td>
             <td><small class="text-danger" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}"></small></td>
         </tr>
         <tr>
             <th><label for="musicGenre">Thể loại: </label></th>
-            <td><input type="text" id="musicGenre" name="musicGenre" th:field="*{musicGenre}"></td>
+            <td><input type="text" id="musicGenre" name="musicGenre" th:field="*{musicGenre}" th:value="${songDtoUpdate.musicGenre}"></td>
             <td><small class="text-danger" th:if="${#fields.hasErrors('musicGenre')}" th:errors="*{musicGenre}"></small></td>
         </tr>
         <tr>
             <td></td>
             <td>
-                <a href="/" role="button" class="btn btn-sm btn-secondary">Cancel</a>
+                <a href="/user/" role="button" class="btn btn-sm btn-secondary">Cancel</a>
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
             </td>
         </tr>

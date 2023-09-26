@@ -13,17 +13,15 @@ public class Song {
     private String name;
     private String singer;
     private String musicGenre;
-    private String pathMusic;
 
     public Song() {
     }
 
-    public Song(int id, String name, String singer, String musicGenre, String pathMusic) {
+    public Song(int id, String name, String singer, String musicGenre) {
         this.id = id;
         this.name = name;
         this.singer = singer;
         this.musicGenre = musicGenre;
-        this.pathMusic = pathMusic;
     }
 
     public int getId() {
@@ -56,13 +54,5 @@ public class Song {
 
     public void setMusicGenre(String musicGenre) {
         this.musicGenre = musicGenre;
-    }
-
-    public String getPathMusic() {
-        return pathMusic;
-    }
-
-    public void setPathMusic(String pathMusic) {
-        this.pathMusic = pathMusic;
     }
 }

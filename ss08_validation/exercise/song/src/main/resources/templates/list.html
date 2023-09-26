@@ -17,7 +17,6 @@
       <th scope="col">Tên</th>
       <th scope="col">Người thể hiện</th>
       <th scope="col">Thể loại</th>
-      <th scope="col">Đường dẫn</th>
       <th></th>
     </tr>
     </thead>
@@ -27,11 +26,10 @@
         <td th:text="${song.name}"></td>
         <td th:text="${song.singer}"></td>
         <td th:text="${song.musicGenre}"></td>
-        <td th:text="${song.pathMusic}"></td>
-        <td><button type="button" class="btn btn-sm btn-warning">Sửa</button></td>
+        <td><a th:href="@{/update(id=${song.id})}" role="button" class="btn btn-sm btn-warning">Sửa</a></td>
       </tr>
       <tr>
-        <td colspan="6" th:if="${songList.isEmpty()}" class="text-danger">Song list is empty</td>
+        <td colspan="5" th:if="${songList.isEmpty()}" class="text-danger">Song list is empty</td>
       </tr>
     </tbody>
   </table>

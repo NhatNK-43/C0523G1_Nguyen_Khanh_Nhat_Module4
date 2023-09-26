@@ -8,17 +8,15 @@ public class SongDto implements Validator {
     private String name;
     private String singer;
     private String musicGenre;
-    private String pathMusic;
 
     public SongDto() {
     }
 
-    public SongDto(int id, String name, String singer, String musicGenre, String pathMusic) {
+    public SongDto(int id, String name, String singer, String musicGenre) {
         this.id = id;
         this.name = name;
         this.singer = singer;
         this.musicGenre = musicGenre;
-        this.pathMusic = pathMusic;
     }
 
     public int getId() {
@@ -53,14 +51,6 @@ public class SongDto implements Validator {
         this.musicGenre = musicGenre;
     }
 
-    public String getPathMusic() {
-        return pathMusic;
-    }
-
-    public void setPathMusic(String pathMusic) {
-        this.pathMusic = pathMusic;
-    }
-
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -70,9 +60,22 @@ public class SongDto implements Validator {
     public void validate(Object target, Errors errors) {
         SongDto songDto = (SongDto) target;
         if (songDto.getName().equals("")) {
-            errors.rejectValue("name", null, "Require not empty!");
-        } else if (songDto.getName().trim().length()>800) {
-            errors.rejectValue("name", null, "The name has a maximum 800 characters!");
-        } else if (songDto.getName().matches("^\\w$]"));
+            errors.rejectValue("name", null, "Bạn chưa nhập tên bài hát!");
+        } else if (!songDto.getName().matches("^[A-Za-z0-9\\s]{1,800}$")){
+            errors.rejectValue("name",null,"Tên bài hát không chưa ký tự đặc biệt và có ít hơn 800 ký tự!");
+        }
+
+        if (songDto.getSinger().equals("")) {
+            errors.rejectValue("singer", null, "Bạn chưa nhập tên người thể hiện !");
+        } else if (!songDto.getSinger().matches("^[A-Za-z0-9\\s]{1,300}$")){
+            errors.rejectValue("singer",null,"Tên người thể hiện không chưa ký tự đặc biệt và có ít hơn 300 ký tự!");
+        }
+
+        if (songDto.getMusicGenre().equals("")) {
+            errors.rejectValue("musicGenre", null, "Bạn chưa nhập thể loại bài hát!");
+        } else if (!songDto.getMusicGenre().matches("[A-Za-z]+(,?\\s?[A-Za-z]+)*")){
+            errors.rejectValue("musicGenre",null,"Tên thể loại bài hát chưa hợp lệ!");
+        }
+
     }
 }
