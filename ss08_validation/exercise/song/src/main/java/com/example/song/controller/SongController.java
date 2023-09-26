@@ -45,16 +45,16 @@ public class SongController {
         return "redirect:/";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/form-update")
     public String showFormUpdate(@RequestParam int id, Model model){
+        System.out.println(id);
         Song song = songService.findById(id);
-        SongDto songDtoUpdate = new SongDto();
-        BeanUtils.copyProperties(song,songDtoUpdate);
-        model.addAttribute("songDtoUpdate",songDtoUpdate);
-        model.addAttribute("songDto",new SongDto());
+        SongDto songDto = new SongDto();
+        BeanUtils.copyProperties(song,songDto);
+        model.addAttribute("songDto",songDto);
         return "update";
     }
-    @PostMapping("/update")
+    @GetMapping("/update")
     public String update(@Valid @ModelAttribute SongDto songDto, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes){
         new SongDto().validate(songDto,bindingResult);

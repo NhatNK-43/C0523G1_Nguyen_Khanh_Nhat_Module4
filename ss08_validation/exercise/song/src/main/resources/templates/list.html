@@ -26,7 +26,7 @@
         <td th:text="${song.name}"></td>
         <td th:text="${song.singer}"></td>
         <td th:text="${song.musicGenre}"></td>
-        <td><a th:href="@{/update(id=${song.id})}" role="button" class="btn btn-sm btn-warning">Sửa</a></td>
+        <td><a th:href="@{/form-update(id=${song.id})}" role="button" class="btn btn-sm btn-warning">Sửa</a></td>
       </tr>
       <tr>
         <td colspan="5" th:if="${songList.isEmpty()}" class="text-danger">Song list is empty</td>
