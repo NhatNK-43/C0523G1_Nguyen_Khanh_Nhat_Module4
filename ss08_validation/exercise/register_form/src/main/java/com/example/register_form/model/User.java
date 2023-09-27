@@ -1,19 +1,21 @@
 package com.example.register_form.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "first_name", columnDefinition = "varchar(50) not null")
     private String firstName;
+    @Column(name = "last_name", columnDefinition = "varchar(50) not null")
     private String lastName;
+    @Column(name = "phone_number", columnDefinition = "varchar(50) not null")
     private String phoneNumber;
+    @Column(name = "age", columnDefinition = "int not null")
     private int age;
+    @Column(name = "email", columnDefinition = "varchar(100) not null")
     private String email;
 
     public User() {

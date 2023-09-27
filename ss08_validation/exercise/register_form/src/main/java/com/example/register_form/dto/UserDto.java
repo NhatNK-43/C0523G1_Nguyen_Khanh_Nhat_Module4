@@ -79,18 +79,18 @@ public class UserDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
-        if (userDto.getFirstName().equals("")) {
+        if (("").equals(userDto.getFirstName())) {
             errors.rejectValue("firstName", null, "Require not empty!");
         } else if (userDto.getFirstName().trim().length() < 5 || userDto.getFirstName().trim().length() > 45) {
             errors.rejectValue("firstName", null, "The first name has a minimum length of 5, maximum 45 characters!");
         }
-        if (userDto.getLastName().equals("")) {
+        if (("").equals(userDto.getLastName())) {
             errors.rejectValue("lastName", null, "Require not empty!");
         } else if (userDto.getLastName().trim().length() < 5 || userDto.getFirstName().trim().length() > 45) {
             errors.rejectValue("lastName", null, "The last name has a minimum length of 5, maximum 45 characters!");
         }
 
-        if (userDto.getPhoneNumber().equals("")) {
+        if (("").equals(userDto.getPhoneNumber())) {
             errors.rejectValue("phoneNumber", null, "Require not empty!");
         } else if (!userDto.getPhoneNumber().matches("^0[0-9]{9}$")) {
             errors.rejectValue("phoneNumber", null, "The number is invalid!");
@@ -100,9 +100,9 @@ public class UserDto implements Validator {
             errors.rejectValue("age",null,"The age must be greater than 18!");
         }
 
-        if (userDto.getEmail().equals("")){
+        if (("").equals(userDto.getEmail())){
             errors.rejectValue("email", null, "Require not empty!");
-        } else if (!userDto.getEmail().matches("^[A-Za-z0-9][A-Za-z0-9.]{5,}@[a-z]+\\.[a-z]+$")){
+        } else if (!userDto.getEmail().matches("^[A-Za-z0-9][A-Za-z0-9.]{5,29}@[a-z]+\\.[a-z]+$")){
             errors.rejectValue("email", null, "The email is invalid!");
         }
     }

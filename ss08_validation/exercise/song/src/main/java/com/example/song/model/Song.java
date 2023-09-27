@@ -1,16 +1,17 @@
 package com.example.song.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Song {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name", columnDefinition = "varchar(800) not null")
     private String name;
+    @Column(name = "singer", columnDefinition = "varchar(300) not null")
     private String singer;
+    @Column(name = "music_genre", columnDefinition = "varchar(100) not null")
     private String musicGenre;
 
     public Song() {
