@@ -5,6 +5,7 @@ import org.springframework.validation.Validator;
 
 public class UserDto implements Validator {
     private int id;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -84,6 +85,7 @@ public class UserDto implements Validator {
         } else if (userDto.getFirstName().trim().length() < 5 || userDto.getFirstName().trim().length() > 45) {
             errors.rejectValue("firstName", null, "The first name has a minimum length of 5, maximum 45 characters!");
         }
+
         if (("").equals(userDto.getLastName())) {
             errors.rejectValue("lastName", null, "Require not empty!");
         } else if (userDto.getLastName().trim().length() < 5 || userDto.getFirstName().trim().length() > 45) {

@@ -34,7 +34,7 @@ public class SongController {
     @PostMapping("/create")
     public String create(@Valid @ModelAttribute SongDto songDto, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes){
-        new SongDto().validate(songDto,bindingResult);
+//        new SongDto().validate(songDto,bindingResult);
         if(bindingResult.hasErrors()){
             return "create";
         }
@@ -57,7 +57,7 @@ public class SongController {
     @GetMapping("/update")
     public String update(@Valid @ModelAttribute SongDto songDto, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes){
-        new SongDto().validate(songDto,bindingResult);
+//        new SongDto().validate(songDto,bindingResult);
         if(bindingResult.hasErrors()){
             return "update";
         }
