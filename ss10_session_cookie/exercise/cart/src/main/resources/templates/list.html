@@ -23,7 +23,7 @@
         <img th:src="${product.pathImg}" class="card-img-top" alt="img-san-pham">
         <div class="card-body">
           <h5 class="card-title" th:text="${status.count}"></h5>
-          <h5 class="card-title" th:text="${product.name}"></h5>
+          <h5 class="card-title" th:text="${product.name}" style="height: 120px"></h5>
           <p class="card-text" th:text="'Giá: '+${product.price}"></p>
           <p class="card-text" th:text="'Số lượng: '+${product.amount}"></p>
           <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
@@ -49,11 +49,6 @@
             <img id="pathImage" src="" class="card-img-top" alt="img-san-pham">
             <div class="card-body">
               <input type="hidden" id="id" th:field="*{id}">
-              <input type="hidden" id="name" th:field="*{name}">
-              <input type="hidden" id="price" th:field="*{price}">
-              <input type="hidden" id="amount" th:field="*{amount}">
-              <input type="hidden" id="pathImg" th:field="*{pathImg}">
-              <input type="hidden" id="description" th:field="*{description}">
               <h5 class="card-title" id="nameProduct"></h5>
               <p class="card-text" id="descriptionProduct"></p>
               <p class="card-text" id="priceProduct"></p>
@@ -72,37 +67,9 @@
   </div>
 </div>
 
-<!--<div class="modal fade" id="giveBackModal" tabindex="-1" aria-labelledby="giveBackModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog" style="width: 350px">-->
-<!--    <div class="modal-content">-->
-<!--      <form th:action="@{/home/give-back}">-->
-<!--        &lt;!&ndash;                <div class="modal-header text-center" style="justify-content: center">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <h4 class="text-primary fw-bold">MÃ MƯỢN SÁCH</h4>&ndash;&gt;-->
-<!--        &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--        <div class="modal-body">-->
-<!--          <h4 class="text-primary text-center fw-bold">MÃ MƯỢN SÁCH</h4>-->
-<!--          <input class="form-control" placeholder="Nhập mã mượn sách" id="bookCode" name="bookCode">-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close">-->
-<!--            Hủy-->
-<!--          </button>-->
-<!--          <button type="submit" class="btn btn-sm btn-primary">-->
-<!--            Trả sách-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <script>
   function detailsProduct(id, name, price, amount, description, pathImg){
     document.getElementById("id").value = id;
-    document.getElementById("name").value = name;
-    document.getElementById("price").value = price;
-    document.getElementById("amount").value = amount;
-    document.getElementById("description").value = description;
-    document.getElementById("pathImg").value = pathImg;
     document.getElementById("nameProduct").textContent = name;
     document.getElementById("pathImage").src = pathImg;
     document.getElementById("amountProduct").textContent = "Số lượng: " + amount;
@@ -110,9 +77,6 @@
     document.getElementById("descriptionProduct").textContent = "Mô tả: " + description;
   }
 
-  // function giveBackBook(){
-  //
-  // }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

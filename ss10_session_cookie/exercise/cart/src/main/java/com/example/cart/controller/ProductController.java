@@ -1,6 +1,6 @@
 package com.example.cart.controller;
 
-import com.example.cart.model.Cart;
+import com.example.cart.dto.Cart;
 import com.example.cart.model.Product;
 import com.example.cart.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +33,6 @@ public class ProductController {
     public String addToCart(@RequestParam int id, @SessionAttribute(value = "cart", required = false) Cart cart){
         Product product = productService.findById(id);
         cart.addProduct(product);
-        Map<Product,Integer> integerMap = cart.getProducts();
-        for (Product key:integerMap.keySet()) {
-            System.out.println(key);
-        }
         return "redirect:/products";
     }
 }

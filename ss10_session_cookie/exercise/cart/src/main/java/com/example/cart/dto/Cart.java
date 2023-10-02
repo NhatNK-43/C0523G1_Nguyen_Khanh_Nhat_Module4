@@ -1,4 +1,6 @@
-package com.example.cart.model;
+package com.example.cart.dto;
+
+import com.example.cart.model.Product;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +24,27 @@ public class Cart {
         }
     }
 
-
     public Float countTotalPayment(){
         float payment = 0;
         for (Map.Entry<Product, Integer> entry : productMap.entrySet()) {
             payment += entry.getKey().getPrice() * (float) entry.getValue();
         }
         return payment;
+    }
+
+    public void setAmount(int id, int amount){
+        for (Product product : productMap.keySet()) {
+            if (product.getId()==id){
+                productMap.replace(product, amount);
+            }
+        }
+    }
+    public void delete(int id){
+        for (Product product : productMap.keySet()) {
+            if (product.getId()==id){
+                productMap.remove(product,productMap.get(product));
+                break;
+            }
+        }
     }
 }

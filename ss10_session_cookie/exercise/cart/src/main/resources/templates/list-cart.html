@@ -16,32 +16,36 @@
 </div>
 
 <div class="container">
-    <!--  <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal"-->
-    <!--          data-bs-target="#giveBackModal" th:attr="onclick=|giveBackBook()|">Trả sách</button>-->
-    <h4 class="text-light ms-3" th:text="'Tổng tiền: '+${totalPayment}+' VNĐ'" id="totalPayment" name="totalPayment"></h4>
+    <h4 class="text-light ms-3" th:text="'Tổng tiền: '+${totalPayment}+' VNĐ'" id="totalPayment"
+        name="totalPayment"></h4>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12" th:each="entry,status:${productMap}">
             <div class="card m-3" style="width: 100%">
                 <img th:src="${entry.getKey().getPathImg()}" class="card-img-top" alt="img-san-pham">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${status.index+1}"></h5>
-                    <h5 class="card-title" th:text="${entry.getKey().name}"></h5>
+                    <h5 class="card-title" th:text="${entry.getKey().name}"  style="height: 120px"></h5>
                     <p class="card-text" th:text="'Giá: '+${entry.getKey().price}"></p>
-                    <div class="d-flex">
-                        <button class="btn btn-sm btn-outline-dark"
-                                th:attr="onclick=|downAmount(${status.index},${productMap.size()})|">-
-                        </button>
+                    <div class="navbar">
+                        <div class="container-fluid ">
+                            <a class="btn btn-sm btn-outline-danger" th:href="@{/carts/delete/{id}(id=${entry.getKey().getId()})}">Xóa
+                            </a>
+                            <div class="d-flex">
+                                <button class="btn btn-sm btn-outline-dark"
+                                        th:attr="onclick=|downAmount(${entry.getKey().getId()})|">-
+                                </button>
 
-                        <input type="number" class="form-control-sm me-2 ms-2" th:value="${entry.getValue()}"
-                               readonly th:min="0" th:max="${entry.getKey().getAmount()}"
-                               th:id="'amount'+${status.index}">
+                                <input type="number" class="form-control-sm me-2 ms-2" th:value="${entry.getValue()}"
+                                       readonly th:min="0" th:max="${entry.getKey().getAmount()}"
+                                       th:id="'amount'+${entry.getKey().getId()}">
 
-                        <button class="btn btn-sm btn-outline-dark"
-                                th:attr="onclick=|upAmount(${status.index},${productMap.size()})|">+
-                        </button>
-
-                        <input type="hidden" th:id="'price'+${status.index}" th:value="${entry.getKey().getPrice()}">
-                        <input type="hidden" th:id="'amountMax'+${status.index}" th:value="${entry.getKey().getAmount()}">
+                                <button class="btn btn-sm btn-outline-dark"
+                                        th:attr="onclick=|upAmount(${entry.getKey().getId()})|">+
+                                </button>
+                                <input type="hidden" th:id="'amountMax'+${entry.getKey().getId()}"
+                                       th:value="${entry.getKey().getAmount()}">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,34 +54,23 @@
 </div>
 
 <script>
-    function downAmount(index, size) {
-        let amountId = "amount" + index;
+    function downAmount(id) {
+        let amountId = "amount" + id;
         let total = 0;
         if (document.getElementById(amountId).value > 0) {
             document.getElementById(amountId).value = +(document.getElementById(amountId).value) - 1;
+            let amountChange = document.getElementById(amountId).value;
+            window.location.href = `carts/change-amount/${id}/${amountChange}`
         }
-        for (let i=0; i<size; i++){
-            let priceIndex = "price"+i;
-            let amountIndex = "amount"+i;
-            total += parseInt(document.getElementById(amountIndex).value)*
-                parseInt(document.getElementById(priceIndex).value)
-        }
-        document.getElementById("totalPayment").textContent = "Tổng tiền: "+ total+ " VNĐ";
     }
 
-    function upAmount(index, size) {
-        let amountId = "amount" + index;
-        let amountMaxId = "amountMax"+index;
-        let total = 0;
+    function upAmount(id) {
+        let amountId = "amount" + id;
+        let amountMaxId = "amountMax" + id;
         if (parseInt(document.getElementById(amountId).value) < parseInt(document.getElementById(amountMaxId).value)) {
             document.getElementById(amountId).value = +(document.getElementById(amountId).value) + 1;
-            for (let i=0; i<size; i++){
-                let priceIndex = "price"+i;
-                let amountIndex = "amount"+i;
-                total += parseInt(document.getElementById(amountIndex).value)*
-                    parseInt(document.getElementById(priceIndex).value)
-            }
-            document.getElementById("totalPayment").textContent = "Tổng tiền: "+ total+ " VNĐ";
+            let amountChange = document.getElementById(amountId).value;
+            window.location.href = `carts/change-amount/${id}/${amountChange}`
         }
     }
 </script>
