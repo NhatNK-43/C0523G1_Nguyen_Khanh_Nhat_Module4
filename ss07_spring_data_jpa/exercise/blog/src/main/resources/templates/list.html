@@ -51,23 +51,23 @@
         </div>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" th:href="@{/blog(page=${(blogList.number)-1},searchName=${searchName})}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-                    <li class="page-item" th:each="status:${blogList}"><a class="page-link" th:href="@{/(page=${(status.count)-1},searchName=${searchName})}" th:text="${status.count}"></a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" th:href="@{/(page=${blogList.number+1},searchName=${searchName})}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<!--    <nav aria-label="Page navigation example">-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item">-->
+<!--                <a class="page-link" th:href="@{/blog(page=${(blogList.number)-1},searchTitle=${searchTitle})}" aria-label="Previous">-->
+<!--                    <span aria-hidden="true">&laquo;</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--&lt;!&ndash;                    <li class="page-item" th:each="status:${blogList}"><a class="page-link" th:href="@{/(page=${(status.count)-1},searchTitle=${searchTitle})}" th:text="${status.count}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;&gt;-->
+<!--            <li class="page-item">-->
+<!--                <a class="page-link" th:href="@{/(page=${blogList.number+1},searchTitle=${searchTitle})}" aria-label="Next">-->
+<!--                    <span aria-hidden="true">&raquo;</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
 </div>
 
 

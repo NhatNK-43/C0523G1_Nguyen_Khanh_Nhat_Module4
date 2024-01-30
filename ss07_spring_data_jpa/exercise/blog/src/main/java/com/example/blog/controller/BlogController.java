@@ -34,11 +34,11 @@ public class BlogController {
 
     @GetMapping("")
     public ModelAndView home(@RequestParam(defaultValue = "0", required = false) int page,
-                       @RequestParam(defaultValue = "", required = false) String searchName, Model model) {
-        Pageable pageable = PageRequest.of(page, 4);
-        List<Blog> blogPage = blogService.findAllByTitleContaining(pageable, searchName);
+                       @RequestParam(defaultValue = "", required = false) String searchTitle, Model model) {
+        Pageable pageable = PageRequest.of(page, 2);
+        List<Blog> blogPage = blogService.findAllByTitleContaining(pageable, searchTitle);
         ModelAndView modelAndView = new ModelAndView("list","blogList", blogPage);
-        modelAndView.addObject("searchName", searchName);
+        modelAndView.addObject("searchName", searchTitle);
         return modelAndView;
 
     }

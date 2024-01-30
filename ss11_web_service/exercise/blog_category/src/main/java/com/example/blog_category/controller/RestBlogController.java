@@ -7,9 +7,11 @@ import com.example.blog_category.service.IBlogService;
 import com.example.blog_category.service.ICategoryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,9 @@ public class RestBlogController {
     @Autowired
     private ICategoryService categoryService;
     @GetMapping("")
-    public ResponseEntity<List<BlogEntity>> getList(){
-        List<BlogEntity> blogList = blogService.findAll();
+    public ResponseEntity<Page<BlogEntity>> getList(@RequestParam(defaultValue = "0", required = false) int page){
+        Pageable pageable = PageRequest.of(page,3);
+        Page<BlogEntity> blogList = blogService.findAll(pageable);
         if(blogList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
